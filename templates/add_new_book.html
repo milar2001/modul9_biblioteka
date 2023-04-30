@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj książkę</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Dodaj książkę</h1>
+    <form action="/add_new_book" method="POST">
+        {{ form.csrf_token }}
+        <table>
+            <thead>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            </thead>
+            <tr>
+                <td><input type="text" title="Tytuł" name="title"></td>
+                <td><input type="text" title="Autor" name="author"></td>
+            </tr>
+        </table>
+        <input type="submit" name="btn" value="Add">
+    </form>
+</body>
+</html>

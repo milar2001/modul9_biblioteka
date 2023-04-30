@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteka</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Książki</h1>
+    <table>
+    <thead>
+    <th>Tytuł</th>
+    <th>Autor</th>
+    <th>Czy wypożyczona?</th>
+    </thead>
+    {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</a></td>
+            <td>{{ book.author }}</td>
+            <td class="{% if book.borrowed %}unavailable{% else %}available{% endif %}">
+                {{ book.borrowed|default('Dostępna') }}
+            </td>
+
+            <td>
+                <form action="{{ url_for('borrow', book_id=book.id) }}" method="POST">
+                    <button type="submit">Wypożycz</button>
+                </form>
+            </td>
+            <td>
+                <form action="{{ url_for('return_book', book_id=book.id) }}" method="POST">
+                    <button type="submit">Oddaj</button>
+                </form>
+            </td>
+            <td>
+                <form action="{{ url_for('remove_book', book_id=book.id) }}" method="POST">
+                    <button type="submit">Usuń</button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+    <form action="/add_new_book" method="POST">
+        <input type="submit" name="btn" value="Add book">
+    </form>
+</body>
+</html>
