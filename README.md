@@ -3,6 +3,8 @@ Abu uruchomic aplikacje nalezy pobrac repozytorium, a nastepnie otworzyc je w na
 W razie problemow wyrownac wersje bibliotek <br/>
 np. "pip install Flask==2.3.1" <br/>
 
-Moja aplikacja sluzy do zarzadzania ksiazkami w bibliotece <br/>
-Mozemy zmieniac status ksiazek gdy zostana one wypozyczone <br/>
-Mozemy usunac ksiazke z naszej biblioteki oraz dodac nowa <br/>
+GET http://[hostname]/library - wyswietlanie zawartosci biblioteki <br/>
+PATCH http://[hostname]/library/<int:book_id>/borrow - wypozyczenie ksiazki <br/>
+PATCH http://[hostname]/library/<int:book_id>/return - oddanie ksiazki <br/>
+DELETE http://[hostname]/library/<int:book_id> - usuniecie ksiazki z biblioteki <br/>
+POST http://[hostname]/library - dodanie nowej ksiazki do biblioteki <br/>
